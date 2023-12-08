@@ -1,0 +1,7 @@
+#!/bin/bash
+python manage.py migrate
+if [[ "$DEBUG" == "True" ]]; then
+  python manage.py runserver $APP_HOST:$APP_PORT
+else
+  gunicorn --workers=4 -b $APP_HOST:$APP_PORT core.wsgi
+fi

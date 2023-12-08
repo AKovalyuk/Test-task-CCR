@@ -1,0 +1,31 @@
+version: '3.0'
+
+
+services:
+  app:
+    container_name: app
+    build:
+      context: .
+    env_file:
+      - .env
+    ports:
+      - '${APP_PORT}:${APP_PORT}'
+    volumes:
+      - .:/app
+      - /app/venv
+    restart: always
+    command: ./run
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: postgres:16
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  postgres_data:
