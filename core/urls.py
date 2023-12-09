@@ -22,5 +22,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('summernote/', include('django_summernote.urls'))
+    path('api-auth/', include('rest_framework.urls')),
+    path('summernote/', include('django_summernote.urls')),
+    path('api/', include(
+        [
+            path('news/', include('news.urls')),
+        ]
+    ))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
