@@ -43,8 +43,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_summernote',
     'constance',
+    'django_admin_geomap',
 
     'news',
+    'weather',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +64,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['venv/lib/python3.11/site-packages/django_admin_geomap/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
