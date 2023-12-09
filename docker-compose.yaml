@@ -17,6 +17,7 @@ services:
     command: ./run
     depends_on:
       - db
+      - redis
 
   db:
     container_name: db
@@ -27,5 +28,14 @@ services:
       - postgres_data:/var/lib/postgresql/data
     restart: always
 
+  redis:
+    container_name: redis
+    image: redis:7
+    command: redis-server --save 240 1 --loglevel warning
+    volumes:
+      - redis_data:/data
+    restart: always
+
 volumes:
   postgres_data:
+  redis_data:

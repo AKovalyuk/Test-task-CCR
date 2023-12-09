@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from os import getenv, path
+from datetime import time
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,8 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'rest_framework',
     'django_summernote',
+    'constance',
+
     'news',
 ]
 
@@ -88,6 +92,24 @@ DATABASES = {
     }
 }
 
+
+# Redis
+
+REDIS_HOST = getenv('REDIS_HOST')
+REDIS_PORT = getenv('REDIS_PORT')
+
+
+def redis_url(database: int):
+    return f'redis://{REDIS_HOST}:{REDIS_PORT}/{database}'
+
+
+# Constance
+
+CONSTANCE_BACKEND = 'constance.backends.redisd.RedisBackend'
+CONSTANCE_REDIS_CONNECTION = redis_url(database=0)
+CONSTANCE_CONFIG = {
+    'NOTIFICATION_TIME': (time(hour=10), 'Notification time every day'),
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
