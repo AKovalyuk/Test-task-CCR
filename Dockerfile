@@ -12,4 +12,5 @@ COPY . /app
 
 WORKDIR /app
 
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt && \
+    python manage.py collectstatic --no-input

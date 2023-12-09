@@ -160,5 +160,6 @@ cython_debug/
 .idea/
 
 
-# Django static files
+# Django static files and media
 media/
+static/
