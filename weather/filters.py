@@ -28,7 +28,7 @@ class WeatherReportListFilter(admin.SimpleListFilter):
     def lookups(self, request, model_admin):
         return [
             (str(date.date), str(date.date)) for date in
-            WeatherReport.objects.annotate(date=TruncDate('timestamp')).distinct('date')
+            WeatherReport.objects.annotate(date=TruncDate('timestamp')).distinct('date')[:15]
         ]
 
     def queryset(self, request, queryset):

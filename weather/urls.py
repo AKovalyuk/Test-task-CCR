@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import PlaceViewSet, WeatherReportViewSet
+from .views import PlaceViewSet, WeatherReportViewSet, export_xlsx
 
 
 urlpatterns = [
@@ -16,4 +16,5 @@ urlpatterns = [
     path('weather_report/<int:pk>/', WeatherReportViewSet.as_view(
         {'get': 'retrieve'}
     )),
+    path('weather_report/export/', export_xlsx),
 ]
