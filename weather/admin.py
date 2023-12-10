@@ -3,6 +3,7 @@ from django_admin_geomap import ModelAdmin
 from import_export.admin import ImportExportModelAdmin
 
 from .models import Place, WeatherReport
+from .filters import PlaceListFilter, WeatherReportListFilter
 
 
 # Register your models here.
@@ -13,8 +14,9 @@ class Admin(ModelAdmin, ImportExportModelAdmin):
 
 
 class WeatherReportAdmin(admin.ModelAdmin):
-    ordering = ("-timestamp",)
+    ordering = ["-timestamp",]
+    list_filter = [PlaceListFilter, WeatherReportListFilter]
 
 
 admin.site.register(Place, Admin)
-admin.site.register(WeatherReport, admin.ModelAdmin)
+admin.site.register(WeatherReport, WeatherReportAdmin)

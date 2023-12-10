@@ -1,4 +1,4 @@
-from rest_framework import viewsets, permissions, mixins, generics
+from rest_framework import viewsets, permissions
 
 from .models import Place, WeatherReport
 from .serializers import PlaceSerializer, WeatherReportSerializer
