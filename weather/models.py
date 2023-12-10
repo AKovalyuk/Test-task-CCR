@@ -36,3 +36,16 @@ class Place(models.Model, GeoItem):
 
     def __str__(self):
         return f'{self.name} {self.rating}/25'
+
+
+class WeatherReport(models.Model):
+    temperature = models.FloatField()
+    humidity = models.FloatField()
+    wind_speed = models.FloatField()
+    wind_direction = models.FloatField()
+    air_pressure = models.FloatField()
+    timestamp = models.DateTimeField()
+    place = models.ForeignKey(Place, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'Weather in {self.place.name} {self.timestamp}'

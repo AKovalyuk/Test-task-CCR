@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'constance',
     'django_admin_geomap',
+    'import_export',
 
     'news',
     'weather',
