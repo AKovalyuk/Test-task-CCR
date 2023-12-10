@@ -12,6 +12,7 @@ services:
       - '${APP_PORT}:${APP_PORT}'
     volumes:
       - .:/app
+      # Исключение директории из volume чтобы не мешала разработке
       - /app/venv
     restart: always
     command: ./run
@@ -31,10 +32,36 @@ services:
   redis:
     container_name: redis
     image: redis:7
+    # Бэкап каждые 4 минуты
     command: redis-server --save 240 1 --loglevel warning
     volumes:
       - redis_data:/data
     restart: always
+
+  celery:
+    restart: always
+    build:
+      context: .
+    command: celery -A core worker -l info
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+      - app
+
+  celery-beat:
+    restart: always
+    build:
+      context: .
+    command: celery -A core beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+      - app
+      - celery
 
 volumes:
   postgres_data:

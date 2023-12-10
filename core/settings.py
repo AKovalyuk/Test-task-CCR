@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'constance',
     'django_admin_geomap',
     'import_export',
+    'django_celery_beat',
 
     'news',
     'weather',
@@ -104,6 +105,15 @@ REDIS_PORT = getenv('REDIS_PORT')
 
 def redis_url(database: int):
     return f'redis://{REDIS_HOST}:{REDIS_PORT}/{database}'
+
+
+# Celery
+CELERY_BROKER_URL = redis_url(database=1)
+CELERY_RESULT_BACKEND = redis_url(database=2)
+CELERY_IGNORE_RESULT = True
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TASK_SERIALIZER = "json"
 
 
 # Constance
