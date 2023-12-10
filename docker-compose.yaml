@@ -19,6 +19,7 @@ services:
     depends_on:
       - db
       - redis
+      - weather-service
 
   db:
     container_name: db
@@ -62,6 +63,14 @@ services:
       - redis
       - app
       - celery
+
+  weather-service:
+    restart: always
+    build:
+      context: .
+    command: uvicorn weather_service.app:app --host 0.0.0.0 --port 80
+    env_file:
+      - .env
 
 volumes:
   postgres_data:

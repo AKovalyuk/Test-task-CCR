@@ -115,6 +115,9 @@ CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TASK_SERIALIZER = "json"
 
+# Weather service
+
+WEATHER_PROVIDER = getenv('WEATHER_PROVIDER')
 
 # Constance
 
