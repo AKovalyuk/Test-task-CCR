@@ -1,6 +1,7 @@
 #!/bin/bash
 python manage.py createsuperuser --no-input 2>/dev/null || echo "Superuser already exists"
 python manage.py migrate
+python manage.py collectstatic --no-input
 if [[ "$DEBUG" == "True" ]]; then
   python manage.py runserver $APP_HOST:$APP_PORT
 else

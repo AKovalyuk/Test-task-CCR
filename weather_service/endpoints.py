@@ -14,10 +14,10 @@ router = APIRouter()
     path='/weather',
     response_model=WeatherReportSchema,
 )
-def get_weather(
+async def get_weather(
         latitude: Annotated[float, Query(ge=-90., le=+90.)],
         longitude: Annotated[float, Query(ge=-180., le=+180.)],
-        time: Annotated[datetime, Query()],
+        timestamp: Annotated[datetime, Query()],
 ):
     """
     Симуляция получения погоды в примечательном месте
@@ -28,4 +28,5 @@ def get_weather(
         wind_speed=uniform(0, 100),
         wind_direction=uniform(0, 360),
         air_pressure=uniform(400, 1000),
+        timestamp=timestamp,
     )
