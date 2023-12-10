@@ -125,7 +125,7 @@ CONSTANCE_BACKEND = 'constance.backends.redisd.RedisBackend'
 CONSTANCE_REDIS_CONNECTION = redis_url(database=0)
 CONSTANCE_CONFIG = {
     'NOTIFICATION_TIME': (time(hour=10), 'Notification time every day'),
-    'WEATHER_CHECK_PERIOD_MINUTES': (1, 'Minutes between weather checks'),
+    'WEATHER_CHECK_PERIOD_MINUTES': (60, 'Minutes between weather checks'),
 }
 
 # Password validation

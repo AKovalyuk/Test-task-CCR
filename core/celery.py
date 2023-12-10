@@ -16,6 +16,6 @@ app.conf.beat_schedule = {
     },
     'weather_task': {
         'task': 'weather_task',
-        'schedule': timedelta(minutes=1),
+        'schedule': timedelta(minutes=config.WEATHER_CHECK_PERIOD_MINUTES),
     }
 }

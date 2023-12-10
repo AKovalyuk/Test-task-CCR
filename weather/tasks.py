@@ -1,8 +1,8 @@
 from datetime import datetime
 
 from core.celery import app
-from .models import Place, WeatherReport
 from utils import get_weather
+from .models import Place, WeatherReport
 
 
 @app.task(name='weather_task')

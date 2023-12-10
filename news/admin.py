@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
 
-from .models import Post
 from utils import rescale
+from .models import Post
 
 
 # Register your models here.

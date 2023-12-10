@@ -14,6 +14,7 @@ router = APIRouter()
     path='/weather',
     response_model=WeatherReportSchema,
 )
+# pylint: disable=unused-argument
 async def get_weather(
         latitude: Annotated[float, Query(ge=-90., le=+90.)],
         longitude: Annotated[float, Query(ge=-180., le=+180.)],

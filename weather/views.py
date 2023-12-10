@@ -1,9 +1,9 @@
 from rest_framework import viewsets, permissions, decorators, throttling
 from django.http import HttpResponse
 
+from utils import export
 from .models import Place, WeatherReport
 from .serializers import PlaceSerializer, WeatherReportSerializer
-from utils import export
 
 
 class PlaceViewSet(viewsets.ModelViewSet):
@@ -23,6 +23,7 @@ class ExportThrottle(throttling.UserRateThrottle):
 
 @decorators.api_view(['GET'])
 @decorators.throttle_classes([ExportThrottle])
+# pylint: disable=unused-argument
 def export_xlsx(request):
     buffer = export(WeatherReport.objects.values())
     response = HttpResponse(
