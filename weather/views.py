@@ -25,7 +25,12 @@ class ExportThrottle(throttling.UserRateThrottle):
 @decorators.throttle_classes([ExportThrottle])
 # pylint: disable=unused-argument
 def export_xlsx(request):
-    buffer = export(WeatherReport.objects.values())
+    queryset = WeatherReport.objects.all()
+    if request.query_params.get('place'):
+        queryset = queryset.filter(place__name=request.query_params.get('place'))
+    if request.query_params.get('date'):
+        queryset = queryset.filter(timestamp__date=request.query_params.get('date'))
+    buffer = export(queryset.values())
     response = HttpResponse(
         buffer.read(),
         content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
