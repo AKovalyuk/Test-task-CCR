@@ -12,7 +12,7 @@ def constance_updated(**kwargs):
 
     new_time = kwargs['new_value']
     task = PeriodicTask.objects.get(
-        task='send_email'
+        name='send_email'
     )
 
     task.crontab.minute = new_time.minute
