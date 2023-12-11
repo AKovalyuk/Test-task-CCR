@@ -124,7 +124,7 @@ WEATHER_PROVIDER = getenv('WEATHER_PROVIDER')
 CONSTANCE_BACKEND = 'constance.backends.redisd.RedisBackend'
 CONSTANCE_REDIS_CONNECTION = redis_url(database=0)
 CONSTANCE_CONFIG = {
-    'NOTIFICATION_TIME': (time(hour=10), 'Notification time every day'),
+    'NOTIFICATION_TIME': (time(hour=12, minute=00), 'Notification time every day'),
     'WEATHER_CHECK_PERIOD_MINUTES': (60, 'Minutes between weather checks'),
     'DAILY_MAIL_TITLE': ("Новости за сегодня", 'Email title'),
 }
@@ -166,7 +166,7 @@ REST_FRAMEWORK = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Krasnoyarsk'
 
 USE_I18N = True
 
