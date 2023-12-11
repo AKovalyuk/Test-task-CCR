@@ -126,6 +126,7 @@ CONSTANCE_REDIS_CONNECTION = redis_url(database=0)
 CONSTANCE_CONFIG = {
     'NOTIFICATION_TIME': (time(hour=10), 'Notification time every day'),
     'WEATHER_CHECK_PERIOD_MINUTES': (60, 'Minutes between weather checks'),
+    'DAILY_MAIL_TITLE': ("Новости за сегодня", 'Email title'),
 }
 
 # Password validation
@@ -146,6 +147,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = getenv('EMAIL_HOST')
+EMAIL_HOST_USER = getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = getenv('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = getenv('EMAIL_PORT')
+EMAIL_USE_SSL = False
 
 # Rest framework
 REST_FRAMEWORK = {

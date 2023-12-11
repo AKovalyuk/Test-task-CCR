@@ -2,6 +2,7 @@ import os
 from datetime import timedelta
 
 from celery import Celery
+from celery.schedules import crontab
 from constance import config
 
 
@@ -12,7 +13,10 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'send_email_task': {
         'task': 'send_email',
-        'schedule': timedelta(seconds=5),
+        'schedule': crontab(
+            hour=config.NOTIFICATION_TIME.hour,
+            minute=config.NOTIFICATION_TIME.minute,
+        ),
     },
     'weather_task': {
         'task': 'weather_task',
